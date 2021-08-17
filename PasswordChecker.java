@@ -4,7 +4,8 @@ public class PasswordChecker {
 
     public static void main(String[] args) {
         String PasswordGuess;
-        String SamplePassword = "banana";
+        String SamplePassword = RandomPassGenerator();
+        System.out.println("Randomly Generated Password: " + SamplePassword);
         do {
             Scanner keyboard = new Scanner(System.in);
             System.out.println("enter password guess:");
@@ -27,5 +28,18 @@ public class PasswordChecker {
         }
         while (!PasswordGuess.equals(SamplePassword));
     }
-}
+    public static String RandomPassGenerator() {
+        int PassLength = 8;
+        String[] myArray = new String[PassLength];
+        for (int i = 0; i < PassLength; i++) {
+            char c  = (char)((Math.random()*1000)%26 + 'a');
+            String d = Character.toString(c);
+            if (((int)(Math.random()*5))%2 == 0) {
+                d = d.toUpperCase();
+            }
 
+            myArray[i] = d;
+        }
+        return String.join("", myArray);
+    }
+}
