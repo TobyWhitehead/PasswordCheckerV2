@@ -1,10 +1,31 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PasswordChecker {
 
     public static void main(String[] args) {
         String PasswordGuess;
         String SamplePassword = RandomPassGenerator();
+        int SampleNumber = 4;
+        List<String> PasswordSamples = new ArrayList<>();
+        for (int i = 0; i < SampleNumber; i++) {
+            PasswordSamples.add(RandomPassGenerator());
+        }
+        System.out.println(PasswordSamples);
+        boolean password_chosen = false;
+        do {
+            Scanner keyboard = new Scanner(System.in);
+            System.out.println("enter index of desired password:");
+            String PassIndexS = keyboard.nextLine();
+            int PassIndexI = Integer.parseInt(PassIndexS);
+            if (PassIndexI < 0 || PassIndexI >= SampleNumber) {
+                System.out.println("index not in range");
+            } else {
+                password_chosen = true;
+                SamplePassword = PasswordSamples.get(PassIndexI);
+            }
+        } while(!password_chosen);
         System.out.println("Randomly Generated Password: " + SamplePassword);
         do {
             Scanner keyboard = new Scanner(System.in);
@@ -43,3 +64,6 @@ public class PasswordChecker {
         return String.join("", myArray);
     }
 }
+
+
+
